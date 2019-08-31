@@ -11,80 +11,30 @@
     </div>
 
     <div class="customize-food">
-      <div class="food-card2">
+      <div class="food-card2" v-for="orders in ordersDetail">
         <div class="food-name-price2">
-          <h3>Boli & Titus</h3>
-          <h4>&#8358; 7,525</h4>
+          <h3>{{ orders.food.name || '' }}</h3>
+          <h4>&#8358; {{ orders.totalAmount || '' }}</h4>
         </div>
         <div class="cart-border">
           <div class="order-name-price">
             <img src="../../assets/images/close-btn.svg" alt="close button">
           </div>
           <div class="product_img">
-            <img src="../../assets/images/abacha-meal.jpg">
+            <img :src="orders.food.image_url || '../../assets/images/abacha-meal.jpg'">
           </div>
           <div class="increase-order">
             <integer-plusminus class="increase-order-number demo-vertical" :min="0" :max="99" :value="0" :vertical="true"></integer-plusminus>
           </div>
         </div>
       </div>
-      <div class="food-card2">
-        <div class="food-name-price2">
-          <h3>Boli & Titus</h3>
-          <h4>&#8358; 7,525</h4>
-        </div>
-        <div class="cart-border">
-          <div class="order-name-price">
-            <img src="../../assets/images/close-btn.svg" alt="close button">
-          </div>
-          <div class="product_img">
-            <img src="../../assets/images/abacha-meal.jpg">
-          </div>
-          <div class="increase-order">
-            <integer-plusminus class="increase-order-number demo-vertical" :min="0" :max="99" :value="0" :vertical="true"></integer-plusminus>
-          </div>
-        </div>
-      </div>
-      <div class="food-card2">
-        <div class="food-name-price2">
-          <h3>Boli & Titus</h3>
-          <h4>&#8358; 7,525</h4>
-        </div>
-        <div class="cart-border">
-          <div class="order-name-price">
-            <img src="../../assets/images/close-btn.svg" alt="close button">
-          </div>
-          <div class="product_img">
-            <img src="../../assets/images/abacha-meal.jpg">
-          </div>
-          <div class="increase-order">
-            <integer-plusminus class="increase-order-number demo-vertical" :min="0" :max="99" :value="0" :vertical="true"></integer-plusminus>
-          </div>
-        </div>
-      </div>
-      <div class="food-card2">
-        <div class="food-name-price2">
-          <h3>Boli & Titus</h3>
-          <h4>&#8358; 7,525</h4>
-        </div>
-        <div class="cart-border">
-          <div class="order-name-price">
-            <img src="../../assets/images/close-btn.svg" alt="close button">
-          </div>
-          <div class="product_img">
-            <img src="../../assets/images/abacha-meal.jpg">
-          </div>
-          <div class="increase-order">
-            <integer-plusminus class="increase-order-number demo-vertical" :min="0" :max="99" :value="0" :vertical="true"></integer-plusminus>
-          </div>
-        </div>
-      </div>
+
     </div>
     <div class="fixed-bottom">
       <div class="checkout-card">
         <div class="cart-total">
           <p>Cart Total:</p>
-          <h4>&#8358;7,525.00</h4>
+          <h4>&#8358;{{ cart() }}.00</h4>
         </div>
         <div class="checkout">
           <router-link to="WalletBalance">
@@ -101,6 +51,7 @@
   export default {
     name: "Cart.vue",
     components: { IntegerPlusminus },
+    props: ['ordersDetail'],
     data () {
       return {
         ipm_value: 0,
@@ -111,6 +62,15 @@
         ipm_slot_incr: '+1',
         ipm_vertical: false,
         demo_slot_value: 0
+      }
+    },
+    mounted() {
+      console.log(this.ordersDetail);
+    },
+    methods: {
+      cart(){
+        let total = 0; this.ordersDetail.forEach((item) => { total += item.totalAmount; });
+        return total;
       }
     }
   }

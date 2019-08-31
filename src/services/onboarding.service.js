@@ -1,13 +1,17 @@
 import {ApiService} from "./api.service";
+import {mapActions} from "vuex";
 
 
 const onboard = {
+  ...mapActions({auth: 'AUTHORISE_USER'}),
   phoneNumber: async (phone_number) => {
     let url = "/verify-number";
     return await ApiService.post(url, {phone_number: phone_number}).then((res) => {
-      return Promise.resolve(res.data.data);
+      console.log(res);
+      return Promise.resolve(res.data);
     }).catch((error) => {
-      return Promise.reject(error.response.data);
+      console.log(error);
+      return Promise.reject(error.data);
     });
   },
 

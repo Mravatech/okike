@@ -26,58 +26,96 @@ import CustomerService from "../views/Settings/CustomerService";
 import ChangePin from "../views/Settings/ChangePin";
 import Location from '../views/Login/Location.vue';
 import IntegerPlusminus from '@/components/IntegerPlusminus.vue'
+import Store from "../store/store";
 
 
 
 
 Vue.use(Router)
 
-export default new Router({
+
+const router = new Router({
   routes: [
+    {
+      path: '/logout',
+      name: 'logout',
+    },
     {
       path: '/',
       name: 'Splash',
-      component: Splash
+      component: Splash,
     },
     {
       path: '/Splash2',
       name: 'Splash2',
-      component: Splash2
+      component: Splash2,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/Splash3',
       name: 'Splash3',
-      component: Splash3
+      component: Splash3,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/Login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/Verify',
       name: 'Verify',
-      component: Verify
+      component: Verify,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/VerifyCode/:phone',
       name: 'VerifyCode',
-      component: VerifyCode
+      component: VerifyCode,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/Location',
       name: 'Location',
-      component: Location
+      component: Location,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/CreatePin',
       name: 'CreatePin',
-      component: CreatePin
+      component: CreatePin,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/Username',
       name: 'Username',
-      component: Username
+      component: Username,
+      meta: {
+        public: true,  // Allow access to even if not logged in
+        onlyWhenLoggedOut: true
+      }
     },
     {
       path: '/Landing',
@@ -85,9 +123,10 @@ export default new Router({
       component: Landing
     },
     {
-      path: '/ViewFood',
+      path: '/ViewFood/:uuid',
       name: 'ViewFood',
-      component: ViewFood
+      component: ViewFood,
+      props: true,
     },
     {
       path: '/Delicacies',
@@ -97,7 +136,8 @@ export default new Router({
     {
       path: '/Cart',
       name: 'Cart',
-      component: Cart
+      component: Cart,
+      props: true,
     },
     {
       path: '/Delivery',
@@ -180,4 +220,25 @@ export default new Router({
   ],
   // mode:'history'
 
-})
+});
+
+router.beforeEach((to, from, next) => {
+  const isPublic = to.matched.some(record => record.meta.public);
+  const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut);
+  const loggedIn = Store.getters.IS_AUTHENTICATED;
+
+  if (!isPublic && !loggedIn) {
+    return next({
+      name: 'Login',
+    });
+  }
+
+  // Do not allow user to visit login page or register page if they are logged in
+  if (loggedIn && onlyWhenLoggedOut) {
+    return next({name: 'Landing'});
+  }
+
+  next();
+});
+
+export default router;

@@ -22,7 +22,8 @@ const actions = {
     },
     AUTHORISE_USER: async (context, token) => {
         return await onboard.authorize(token).then((res) => {
-            context.commit('SET_USER_DATA', res);
+          context.commit('SET_AUTH_TOKEN', token);
+          context.commit('SET_USER_DATA', res);
             return true;
         }).catch((err) => {
             window.console.log(err);
