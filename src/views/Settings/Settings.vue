@@ -57,6 +57,9 @@
         font-size: 22px;
         letter-spacing: 0;
     }
+    a:hover, a:active, a:focus{
+        text-decoration: none;
+    }
     .settings-btn{
         padding-top: 7px;
         display: flex;

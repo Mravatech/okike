@@ -26,6 +26,9 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/index.css';
 import {ApiService} from "./services/api.service";
 
+import { VueperSlides, VueperSlide } from 'vueperslides'
+
+import 'vueperslides/dist/vueperslides.css'
 Vue.use(TabsPlugin);
 
 Vue.use(VTab);
@@ -63,6 +66,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+    VueperSlides, VueperSlide,
   VueTyper,
   IntegerPlusminus,
   'vue-typer': VueTyper,

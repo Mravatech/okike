@@ -307,6 +307,7 @@ a:hover, a:active, a:focus{
     color: #FFFFFF;
     letter-spacing: 0;
     padding: 0.8rem 2.3rem;
+    width: 100%;
 }
 .login-with-btn2{
     background: rgba(0,0,0,0.25);
@@ -1093,6 +1094,9 @@ a:hover, a:active, a:focus{
 }
 .food-promo-today{
     padding-bottom: 1rem;
+}
+.modal{
+    height: 103% !important;
 }
 .modal.show .modal-dialog {
     -webkit-transform: none;
