@@ -11,7 +11,7 @@
           <p>Please enter the activation code <br>sent via SMS.</p>
         </div>
         <div class="verify-number">
-          <input class="verify-input2" name="text" placeholder="Activation Code" required type="text" v-model="otp">
+          <input class="verify-input2" name="text" placeholder="Activation Code" required type="number" v-model="otp">
           <button class="verify-btn" v-if="isLoading">
             <div style="margin: 0 auto;">
               <half-circle-spinner
@@ -74,7 +74,9 @@
 </script>
 
 <style scoped>
-
+    body{
+        background-color: #252525;
+    }
   .half-circle-spinner{
     margin: 0 auto !important;
   }

@@ -12,7 +12,7 @@
         </div>
         <div class="locations">
           <div class="verify-number">
-            <input class="verify-input" name="text" placeholder="Username" required type="text" v-model="username">
+            <input class="verify-input" name="text" placeholder="Username" required type="number" v-model="username">
             <button class="verify-btn" @click="onSubmit">Welcome to Okike</button>
           </div>
           <div class="text-center">
@@ -57,5 +57,8 @@
 </script>
 
 <style scoped>
+    body{
+        background-color: #252525;
+    }
 
 </style>

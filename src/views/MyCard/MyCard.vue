@@ -13,7 +13,7 @@
                 <h3>Add or Remove Card</h3>
                 <p>To be able to pay, add your card to<br> fund Wallet</p>
             </div>
-            <div class="">
+            <div class="pb-3">
                 <div class="visa_card">
                     <div class="atm-card-number">
                         <p>****1234</p>

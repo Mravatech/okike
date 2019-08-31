@@ -1,4 +1,4 @@
-# okike
+# okike food app
 
 > A Vue.js project
 

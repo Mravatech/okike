@@ -222,7 +222,7 @@
     }
     .nav-right-inner{
         height: 100vh;
-        background: url("../../assets/images/logo_menu_bg.svg") bottom 0px right no-repeat;
+        background: url("../../assets/images/logo_menu_bg.png") bottom 0px right no-repeat;
         background-size: 240px 220px;
     }
     .menu-top-right{
