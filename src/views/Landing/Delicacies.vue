@@ -33,7 +33,7 @@
                 <div class="row"  v-if="data.foods.length > 0">
                   <div class="col-6" v-for="food in data.foods" :key="food.uuid">
                     <div class="delicacy-post">
-                      <router-link to="ViewFood"><div class="delicacy_img">
+                      <router-link :to="'ViewFood/' + food.uuid"><div class="delicacy_img">
                         <img  :src="food.image_url" alt="Okike Food">
                       </div></router-link>
                       <div class="food-details">

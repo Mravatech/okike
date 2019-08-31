@@ -33,6 +33,8 @@
   import {onboard} from '../../services/onboarding.service'
   import router from "../../router";
   import {HalfCircleSpinner} from 'epic-spinners'
+  import {mapActions} from "vuex";
+  import {ApiService} from "../../services/api.service";
 
 
   export default {
@@ -48,6 +50,7 @@
     },
 
     methods: {
+      ...mapActions({autho: 'AUTHORISE_USER'}),
       async onSubmit() {
         this.isLoading = true;
         if(this.phone_number === ''){
@@ -55,9 +58,23 @@
           return  this.$toast.error('Please enter your phone number');
         }
         await onboard.phoneNumber(this.phone_number).then((res) => {
-          console.log(res);
-          router.push({path: `/VerifyCode/${this.phone_number}`})
+          if(res.data.token) {
+
+            let token =res.data.token;
+            this.autho(token).then(function () {
+              router.push({name: 'Landing'});
+            }).catch((error) => {
+
+            })
+            ApiService.setHeader(token);
+          }
+          if(res.data.proceed){
+            router.push({path: `/Landing`})
+          } else {
+            router.push({path: `/VerifyCode/${this.phone_number}`})
+          }
         }).catch((err) => {
+          console.log(err)
           this.isLoading = false;
           this.$toast.error('message string')
         });
