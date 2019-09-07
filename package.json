@@ -34,6 +34,7 @@
     "vue-integer-plusminus": "^1.1.0",
     "vue-nav-tabs": "^0.5.7",
     "vue-owl-carousel": "^2.0.3",
+    "vue-paystack": "^2.0.2",
     "vue-router": "^3.0.1",
     "vue-tabs": "^0.3.1",
     "vue-toast-notification": "0.0.2",

@@ -28,7 +28,7 @@
             <!--<img src="../../assets/images/naira-icon.svg" >-->
             <!--<p>Add Cash</p>-->
             <b-button class="menu-button " v-b-modal.modal-center><img src="../../assets/images/naira-icon.svg">
-              <p>Add Cash</p></b-button>
+              <p>Fund Wallet</p></b-button>
 
             <b-modal centered class="fixed-bottom" hide-footer hide-header id="modal-center">
               <h4 class="add_cash_title">Add Cash</h4>
