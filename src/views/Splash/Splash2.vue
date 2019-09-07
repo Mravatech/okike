@@ -10,7 +10,9 @@
                     <h3>Explore your <br><b>African Taste</b>, <br>From the tips of <br>your <b>fingers</b></h3>
                 </div>
                 <div class="foot-note-2">
-                    <p><font-awesome-icon icon="circle" class="fontawesom"/><font-awesome-icon icon="circle" class="fontawesom1"/></p>
+                    <p><router-link to="Splash2"><font-awesome-icon icon="circle" class="fontawesom"/></router-link>
+                        <router-link to="Splash3"><font-awesome-icon icon="circle" class="fontawesom1"/></router-link>
+                    </p>
                 </div>
             </div>
         </div>
@@ -19,8 +21,11 @@
 
 <script>
     export default {
-        name: "Splash2.vue"
+        name: "Splash2.vue",
+        created(){
+            setTimeout( () => this.$router.push({ path: '/Splash3'}), 3000);
 
+        }
     }
 </script>
 

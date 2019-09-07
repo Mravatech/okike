@@ -13,7 +13,7 @@
                     <div class="mb-3 pt-5">
                         <p class="addcash_txt">It’s even faster using your Bank Card to fund <br>your Okike Wallet, try it out now.</p>
                     </div>
-                    <router-link to="BankTransfer">
+                    <router-link to="AddBankCard">
                     <div class="mastercard_addcash">
                         <div class="card_icon"><img src="../../assets/images/card_icon.svg" ></div>
                         <button class="addcash-btn2">Add Card</button>
