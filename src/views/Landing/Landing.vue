@@ -103,7 +103,7 @@
         </b-card>
       </div>
       <div class="pb-5"></div>
-      <div class="fixed-bottom">
+      <div class="fixed-bottom landing-footer">
         <div class="floating-menu-footer container">
           <div class="menu-float ">
             <router-link to="Delicacies"><img src="../../assets/images/okike-menu.svg"></router-link>
@@ -197,5 +197,8 @@
     justify-content: space-between;
     padding-bottom: 1rem;
     width: 100%;
+  }
+  .landing-footer{
+      /*background-color: #f3f5f7;*/
   }
 </style>

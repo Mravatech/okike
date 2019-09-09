@@ -7,7 +7,7 @@
                     <img src="../../assets/images/cash-icons.svg">
                 </div>
                 <div class="explore-txt">
-                    <h3>Explore your <br><b>African Taste</b>, <br>From the tips of <br>your <b>fingers</b></h3>
+                    <h3>Place <b>Order</b> <br><b>Receive</b> Order<br>Enjoy <b>Meal</b><br>Share <b>Experience</b></h3>
                 </div>
                 <div class="foot-note2">
                     <div class="typer-txt">
@@ -20,6 +20,7 @@
                                 :type-delay='70'
                                 :pre-erase-delay='2000'
                                 :erase-delay='250'
+                                erase-style=''
                                 :erase-on-complete='false'
                                 caret-animation='blink'
                         ></vue-typer>

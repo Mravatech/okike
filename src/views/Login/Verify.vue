@@ -11,7 +11,7 @@
           <p>An activation code will be sent to you<br> for verification.</p>
         </div>
         <div class="verify-number">
-          <input class="verify-input" name="number" placeholder="E.g 0801 234 5678" required type="text"
+          <input class="verify-input" name="number" placeholder="E.g 0801 234 5678" required type="number"
                  v-model="phone_number">
           <button class="verify-btn" v-if="isLoading">
             <div style="margin: 0 auto;">
@@ -85,6 +85,9 @@
 </script>
 
 <style scoped>
+    body{
+        background-color: #252525;
+    }
   .half-circle-spinner{
     margin: 0 auto !important;
   }

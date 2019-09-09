@@ -13,10 +13,12 @@ import ViewFood from "../views/Landing/ViewFood";
 import Delicacies from "../views/Landing/Delicacies";
 import Cart from "../views/Cart/Cart";
 import Delivery from "../views/Landing/Delivery";
+import Confirmation from "../views/Landing/Confirmation";
 import Menu from "../views/Menu/Menu";
 import Invite from "../views/Invite/Invite";
 import MyCard from "../views/MyCard/MyCard";
 import AddBankCard from "../views/AddCash/AddBankCard";
+import History from '../views/History/History.vue'
 import WalletBalance from "../views/MyCard/WalletBalance";
 import AddCash from "../views/AddCash/AddCash";
 import AddCashQuickteller from "../views/AddCash/AddCashQuickteller";
@@ -145,6 +147,11 @@ const router = new Router({
       component: Delivery
     },
     {
+      path: '/Confirmation',
+      name: 'Confirmation',
+      component: Confirmation
+    },
+    {
       path: '/Menu',
       name: 'Menu',
       component: Menu
@@ -218,7 +225,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     }
   ],
-  // mode:'history'
+  mode:'history'
 
 });
 

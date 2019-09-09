@@ -40,7 +40,8 @@
                 </div>
             </div>
         </div>
-        <div class="fixed-bottom">
+
+        <div class="fixed-bottom bg-white">
             <div class="add-to-bag" @click="goToCheckOut">
 <!--                <router-link to="Cart">-->
                     <div class="add-to-bag-bg">

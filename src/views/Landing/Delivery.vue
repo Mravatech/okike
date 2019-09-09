@@ -29,10 +29,10 @@
           </div>
           <div class="mb-4">
             <div class="select_state">Phone Number</div>
-            <input class="change-pin-input" type="text" placeholder="090012345678">
+            <input class="change-pin-input" type="number" placeholder="090012345678">
           </div>
           <div class="">
-            <router-link to=""><button class="addcash-btn">Submit</button></router-link>
+            <router-link to="Confirmation"><button class="addcash-btn">Submit</button></router-link>
           </div>
         </div>
         <div class="pw-key">
