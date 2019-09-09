@@ -12,19 +12,23 @@
       <div class="mastercard_flex">
         <div class="mastercard-input-box">
           <div class="mastercard_dropdown">
-            <input class="mastercard-input" type="text" placeholder="MASTERCARD***2345">
+              <select name="" id="" class="mastercard-input">
+                  <option value="mastercard">MASTERCARD***2345</option>
+                  <option value="visacard">VISACARD***2345</option>
+                  <option value="vervecard">VERVECARD***2345</option>
+              </select>
             <img src="../../assets/images/dropdown.svg" >
           </div>
           <div class="mb-3">
             <label class="pl-3">Amount</label><br>
-            <input class="mastercard-amount-input" type="text" placeholder="N 00.0">
+            <input class="mastercard-amount-input" type="number" placeholder="N 00.0">
           </div>
           <div class="mb-3">
-            <input class="mastercard-amount-input" type="text" placeholder="PIN">
+            <input class="mastercard-amount-input" type="number" placeholder="PIN">
             <p class="pin_txt">Input Okike Pin</p>
           </div>
           <div class="">
-            <router-link to="AddCashQuickteller"><button class="addcash-btn">Add Card</button></router-link>
+            <router-link to="WalletBalance"><button class="addcash-btn">Add Card</button></router-link>
           </div>
         </div>
         <div class="pw-key">

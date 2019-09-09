@@ -32,7 +32,7 @@
 
             <b-modal centered class="fixed-bottom" hide-footer hide-header id="modal-center">
               <h4 class="add_cash_title">Add Cash</h4>
-              <router-link to="MyCard">
+              <router-link to="AddCash">
                 <div class="my-card-bg">
                   <div><img src="../../assets/images/card-green.svg"></div>
                   <div>
