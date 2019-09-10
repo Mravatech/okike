@@ -15,17 +15,28 @@
           <div class="verify-number">
             <input class="addcard-input" type="text" name="text" placeholder="Card Name" required>
           </div>
+            <div class="verify-number">
+                <the-mask :mask="['####', '#### #### ', '#### #### ####', '#### #### #### ####']" type="tel" name="card-number" class="addcard-input" placeholder="5126  7619  8372  3221" >
+                </the-mask>
+            </div>
           <div class="expiry-label">
             <p>Expiry MM/YY</p>
             <P>What's CVV <span class="questionmark"> ?</span></P>
           </div>
           <div class="expiry-date">
-            <input class="expiry-input" type="number" name="month" placeholder="MM" maxlength="2" required>
-            <input class="expiry-input" type="number" name="year" placeholder="YY" maxlength="2" required>
-            <input class="expiry-input" type="number" name="cvv" placeholder="CVV" maxlength="3" required>
+            <!--<input class="expiry-input" type="number" name="month" placeholder="MM" maxlength="2" required>-->
+            <!--<input class="expiry-input" type="number" name="year" placeholder="YY" maxlength="2" required>-->
+            <!--<input class="expiry-input" type="number" name="cvv" placeholder="CVV" maxlength="3" required>-->
+              <the-mask :mask="['##', '##', '##']" type="tel" name="card-number" class="expiry-input" placeholder="MM" >
+              </the-mask>
+              <the-mask :mask="['##', '##', '##']" type="tel" name="card-number" class="expiry-input" placeholder="YY" >
+              </the-mask>
+              <the-mask :mask="['###', '###', '###']" type="tel" name="card-number" class="expiry-input" placeholder="CVV" >
+              </the-mask>
           </div>
           <div class="card-pin">
-            <input class="card-pin-input" type="number" name="pin" placeholder="PIN" maxlength="4" required>
+            <!--<input class="card-pin-input" type="number" name="pin" placeholder="PIN" maxlength="4" required>-->
+              <the-mask :mask="['####', '####', '####']" type="tel" name="card-number" class="card-pin-input" placeholder="PIN" ></the-mask>
             <div class="atm-card-type">
               <img src="../../assets/images/key-xs-white.svg" >
               <img src="../../assets/images/verve.svg" >
@@ -56,7 +67,9 @@
 </template>
 
 <script>
+    import {TheMask} from 'vue-the-mask'
   export default {
+      components: {TheMask},
     name: "AddBankCard.vue"
   }
 </script>

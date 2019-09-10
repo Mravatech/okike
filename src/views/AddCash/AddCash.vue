@@ -24,7 +24,7 @@
             <input class="mastercard-amount-input" type="number" placeholder="N 00.0">
           </div>
           <div class="mb-3">
-            <input class="mastercard-amount-input" type="number" placeholder="PIN">
+            <input class="mastercard-amount-input" type="password" placeholder="PIN">
             <p class="pin_txt">Input Okike Pin</p>
           </div>
           <div class="">

@@ -62,6 +62,8 @@ export {
 
 Vue.config.productionTip = false;
 
+import {TheMask} from 'vue-the-mask'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -69,6 +71,7 @@ new Vue({
     VueperSlides, VueperSlide,
   VueTyper,
   IntegerPlusminus,
+    TheMask,
   'vue-typer': VueTyper,
   carousel,
   VueTabs,
