@@ -11,14 +11,14 @@
     </div>
 
     <div class="customize-food">
-      <div class="food-card2" v-for="orders in ordersDetail">
+      <div class="food-card2" v-for="(orders, key) in basket" :key="orders.id">
         <div class="food-name-price2">
           <h3>{{ orders.food.name || '' }}</h3>
           <h4>&#8358; {{ orders.totalAmount || '' }}</h4>
         </div>
         <div class="cart-border">
           <div class="order-name-price">
-            <img src="../../assets/images/close-btn.svg" alt="close button">
+            <img src="../../assets/images/close-btn.svg" alt="close button" @click="removeOrderFromCart(key)">
           </div>
           <div class="product_img">
             <img :src="orders.food.image_url || '../../assets/images/abacha-meal.jpg'">
@@ -37,9 +37,10 @@
           <h4>&#8358;{{ cart() }}.00</h4>
         </div>
         <div class="checkout">
-          <router-link to="WalletBalance">
+          <router-link v-if="cart() > 0" to="WalletBalance">
             <p>Checkout</p>
           </router-link>
+          <p v-if="cart() === 0">Nothing in Cart</p>
         </div>
       </div>
     </div>
@@ -48,6 +49,7 @@
 
 <script>
   import { IntegerPlusminus } from 'vue-integer-plusminus'
+  import {mapGetters} from 'vuex';
   export default {
     name: "Cart.vue",
     components: { IntegerPlusminus },
@@ -65,12 +67,40 @@
       }
     },
     mounted() {
-      console.log(this.ordersDetail);
+      if (typeof this.ordersDetail == 'undefined'){
+        this.ordersDetail = [];
+      }
+      this.addOrderToCart(this.ordersDetail)
+    },
+    computed: {
+      ...mapGetters({basket : "GET_CART"})
+    },
+    watch: {
+
     },
     methods: {
       cart(){
-        let total = 0; this.ordersDetail.forEach((item) => { total += item.totalAmount; });
+        let total = 0;
+        this.basket.forEach((item) => { total += item.totalAmount; });
         return total;
+      },
+
+      // adds the order to the cart store
+      addOrderToCart(order){
+        if(Object.keys(order).length > 0){
+          const data = [
+            ...this.basket,
+            ...this.ordersDetail,
+          ]
+          this.$store.commit('UPDATE_CART', data)
+        }
+      },
+
+      // removes order from the cart store
+      removeOrderFromCart(order_id){
+        const old = this.basket
+        old.splice(order_id, 1);
+        this.$store.commit('UPDATE_CART', old)
       }
     }
   }

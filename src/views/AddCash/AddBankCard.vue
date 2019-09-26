@@ -11,12 +11,13 @@
             <router-link to="WalletBalance"><p>Add Bank Card</p></router-link>
           </div>
         </div>
+
         <div class="customer-name">
           <div class="verify-number">
-            <input class="addcard-input" type="text" name="text" placeholder="Card Name" required>
+            <input class="addcard-input" type="text" name="text" placeholder="Card Name" required v-model="card_holder">
           </div>
             <div class="verify-number">
-                <the-mask :mask="['####', '#### #### ', '#### #### ####', '#### #### #### ####']" type="tel" name="card-number" class="addcard-input" placeholder="5126  7619  8372  3221" >
+                <the-mask :mask="['####', '#### #### ', '#### #### ####', '#### #### #### ####']" type="tel" name="card-number" class="addcard-input" placeholder="5126  7619  8372  3221" v-model="card_number">
                 </the-mask>
             </div>
           <div class="expiry-label">
@@ -27,16 +28,16 @@
             <!--<input class="expiry-input" type="number" name="month" placeholder="MM" maxlength="2" required>-->
             <!--<input class="expiry-input" type="number" name="year" placeholder="YY" maxlength="2" required>-->
             <!--<input class="expiry-input" type="number" name="cvv" placeholder="CVV" maxlength="3" required>-->
-              <the-mask :mask="['##', '##', '##']" type="tel" name="card-number" class="expiry-input" placeholder="MM" >
+              <the-mask :mask="['##', '##', '##']" type="tel" name="card-number" class="expiry-input" placeholder="MM" v-model="card_mm">
               </the-mask>
-              <the-mask :mask="['##', '##', '##']" type="tel" name="card-number" class="expiry-input" placeholder="YY" >
+              <the-mask :mask="['##', '##', '##']" type="tel" name="card-number" class="expiry-input" placeholder="YY" v-model="card_yy">
               </the-mask>
-              <the-mask :mask="['###', '###', '###']" type="tel" name="card-number" class="expiry-input" placeholder="CVV" >
+              <the-mask :mask="['###', '###', '###']" type="tel" name="card-number" class="expiry-input" placeholder="CVV" v-model="card_ccv">
               </the-mask>
           </div>
           <div class="card-pin">
             <!--<input class="card-pin-input" type="number" name="pin" placeholder="PIN" maxlength="4" required>-->
-              <the-mask :mask="['####', '####', '####']" type="tel" name="card-number" class="card-pin-input" placeholder="PIN" ></the-mask>
+              <the-mask :mask="['####']" type="password" name="card-number" class="card-pin-input" placeholder="PIN" v-model="card_pin"></the-mask>
             <div class="atm-card-type">
               <img src="../../assets/images/key-xs-white.svg" >
               <img src="../../assets/images/verve.svg" >
@@ -48,7 +49,7 @@
 
 
         <div class="add-card-button">
-          <router-link to="MyCard"><button class="addcard-btn">Add Card</button></router-link>
+          <button class="addcard-btn" @click="addBank()">Add Card</button>
           <div class="key-lock">
             <img src="../../assets/images/key-white.svg" >
           </div>
@@ -67,10 +68,38 @@
 </template>
 
 <script>
-    import {TheMask} from 'vue-the-mask'
+    import {TheMask} from 'vue-the-mask';
+    import {wallet} from '../../services/wallet.service';
   export default {
       components: {TheMask},
-    name: "AddBankCard.vue"
+      name: "AddBankCard.vue",
+      mounted : {
+
+      },
+      data: function () {
+        return {
+          card_number: '',
+          card_holder: '',
+          card_mm: '',
+          card_yy: '',
+          card_ccv: '',
+          card_pin: '',
+          is_loading: false
+        };
+      },
+      methods:{
+        addBank(){
+            const card = {
+              'name' : this.card_holder,
+              'number': this.card_number,
+              'expiryMonth': this.card_mm,
+              'expiryYear': this.card_yy,
+              'cvv': this.card_ccv,
+              'pin': this.card_pin,
+            }
+            wallet.addcash(card)
+        }
+      }
   }
 </script>
 

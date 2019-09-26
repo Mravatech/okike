@@ -498,7 +498,8 @@ a:hover, a:active, a:focus{
 /*Landing Page after onboarding starts*/
 .okike-landing{
     width: 100%;
-    height: available;
+    height: 100%;
+    min-height: 100vh;
     background-color: #f3f5f7;
     /*-webkit-animation-timing-function: ease-in-out;*/
     /*animation-timing-function: ease-in-out;*/
@@ -578,8 +579,9 @@ a:hover, a:active, a:focus{
 .sliding-post img{
     width: 145px;
     height: 145px;
-    border-radius: 15px;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.25);
+    object-fit:cover;
+    box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.25);
+    border-radius: 17px;
 }
 .sliding-post p{
     margin-bottom: 0;
@@ -618,7 +620,9 @@ a:hover, a:active, a:focus{
     display: flex;
     overflow-y: overlay;
     scroll-behavior: smooth;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
+    width: 93%;
+    margin:auto;
 }
 ::-webkit-scrollbar{
     display: none;
@@ -643,13 +647,15 @@ a:hover, a:active, a:focus{
 }
 .view-food-img img{
     width: 100%;
+    height: 300px;
+    object-fit: contain;
 }
 .food-overlay{
     position: absolute;
     z-index: 1;
     background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5));
     width: 100%;
-    height: 350px;
+    height: 100%;
     padding: 2rem 1rem;
 }
 .food-title{
@@ -674,8 +680,9 @@ a:hover, a:active, a:focus{
     width: 100%;
     position: absolute;
     z-index: 2;
-    padding: 1rem;
+    padding: 1rem 1.3rem;
     margin-top: -6rem;
+
 }
 .food-name-price{
     display: flex;
@@ -692,17 +699,17 @@ a:hover, a:active, a:focus{
 .buy-combo{
     display: flex;
     justify-content: space-between;
-    position: relative;
     z-index: 2;
-    padding: 0 1rem;
+    padding-bottom: 10px;
     border-bottom: 1px solid #E4E4E4;
-    margin-top: -2rem;
 }
 .buy-combo p{
     font-family: Avenir-Roman;
     font-size: 18px;
     color: #7C7C7C;
     letter-spacing: 0;
+    margin: auto;
+    margin-left: 0;
 }
 .buy-combo-btn{
     background: #3AA08E;
@@ -717,8 +724,7 @@ a:hover, a:active, a:focus{
 .customize-food{
     position: relative;
     z-index: 3;
-    padding: 1rem;
-    overflow-x: overlay;
+    margin-top: 1rem;
     scroll-behavior: smooth;
     /*height: auto;*/
     margin-bottom: 10vh;

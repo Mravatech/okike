@@ -5,6 +5,7 @@ import {actions} from './actions';
 const state = {
     USER: '',
     AUTHENTICATION_TOKEN: '',
+    CART: {},
 };
 
 export default {state, getters, mutations, actions}

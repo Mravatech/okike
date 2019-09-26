@@ -8,7 +8,8 @@
             <p>Quickly grab your food now.</p>
           </div>
           <div class="">
-            <router-link to="Menu"><img src="../../assets/images/menu_btn.svg"></router-link>
+            <router-link to="Delicacies"><img class="menu-btn" src="../../assets/images/okike-menu.svg"></router-link>
+            <!-- <router-link to="Menu"><img src="../../assets/images/menu_btn.svg"></router-link> -->
           </div>
         </div>
         <div class="locate-user">
@@ -80,19 +81,24 @@
           <b-tabs card class="okike-tab-card">
             <b-tab v-for="data in category" :key="data.uuid" no-body :title="data.name" class="abacha-tab">
               <!--<b-card-img bottom src="https://picsum.photos/600/200/?image=21"></b-card-img>-->
+
               <div class="food-promo-today" :id="data.name" >
                 <div class="promo-today-slide" v-if="data.foods.length > 0">
+
                   <div v-for="food in data.foods" :key="food.uuid" class="sliding-post">
+                    <router-link :to="'ViewFood/' + food.uuid">
                     <div class="product_img">
                       <img :src="food.image_url">
                     </div>
                     <div class="food-details">
                       <p class="food-name"> {{ food.name }}</p>
                       <p class="food-price">&#8358; {{ food.discount_price }} <span class="food-price-big">&#8358; {{ food.price }}</span></p>
-                      <p class="food-time">3:15pm</p>
+                      <p class="food-time">{{getPostTime(food.updated_at)}}</p>
                     </div>
+                  </router-link>
                   </div>
                 </div>
+
                 <div class="promo-today-slide" v-if="data.foods.length === 0">
                   <p class="food-name text-center"> No Data</p>
                 </div>
@@ -105,13 +111,13 @@
       <div class="pb-5"></div>
       <div class="fixed-bottom landing-footer">
         <div class="floating-menu-footer container">
-          <div class="menu-float ">
+          <!-- <div class="menu-float ">
             <router-link to="Delicacies"><img src="../../assets/images/okike-menu.svg"></router-link>
-          </div>
+          </div> -->
 
-          <div class="cart-float ">
-            <router-link to="Cart"><img src="../../assets/images/okike-cart.svg">
-              <sup class="cart-count">12</sup></router-link>
+          <div class="cart-float">
+            <router-link to="Cart"><img class="cart-btn" src="../../assets/images/okike-cart.svg">
+              <sup class="cart-count">{{getCartCount()}}</sup></router-link>
           </div>
         </div>
       </div>
@@ -121,7 +127,8 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex';
+  import {mapActions, mapGetters} from 'vuex';
+  import moment from 'moment';
   import {category} from "../../services/category.service";
 
   // import carousel from 'vue-owl-carousel'
@@ -142,10 +149,12 @@
     },
     computed: {
     // ...mapActions({user: 'GET_USER'}),
+    ...mapGetters({basket : "GET_CART"})
     },
     created(){
       this.user = this.$store.getters.GET_USER;
       this.fetchCategory();
+
     },
     methods: {
       async fetchCategory() {
@@ -163,6 +172,15 @@
         );
       },
 
+      getPostTime(value){
+        if (value) {
+          return moment(String(value)).format('hh:mm a')
+        }
+      },
+
+      getCartCount(){
+        return Object.keys(this.basket).length
+      }
     }
   }
 
@@ -194,11 +212,24 @@
   }
   .floating-menu-footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding-bottom: 1rem;
     width: 100%;
+
   }
+
   .landing-footer{
       /*background-color: #f3f5f7;*/
+  }
+
+  .menu-btn{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  .cart-btn{
+    width: 64px;
+    height: 64px;
   }
 </style>

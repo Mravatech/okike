@@ -18,27 +18,29 @@
                 <h3>{{ details.name || '' }}</h3>
                 <h3>&#8358; {{ details.price || '' }}</h3>
             </div>
-        </div>
+
         <div class="buy-combo">
             <p>{{ details.description || '' }}</p>
             <button class="buy-combo-btn" @click="addPrice(parseInt(details.price), 'combo', details.name, parseInt(details.price))">Buy Combo</button>
         </div>
-        <div class="customize-food">
-            <h4>Customize your Order</h4>
-            <div class="customize-border" v-for="extra in details.extra">
-                <div class="order-name-price">
-                    <h3> {{ extra.name }}</h3>
-                    <p>&#8358;{{ extra.price }}</p>
-                </div>
-                <div class="increase-order">
-                    <integer-plusminus class="increase-order-number"
-                                       @addPrice="addPrice"
-                                       @removePrice="removePrice"
-                                       :type="extra.uuid"
-                                       :name="extra.name"
-                                       :price="extra.price" :min="0" :max="99" :value="0"></integer-plusminus>
-                </div>
-            </div>
+        <div class="scrollable">
+          <div class="customize-food">
+              <h4>Customize your Order</h4>
+              <div class="customize-border" v-for="extra in details.extra">
+                  <div class="order-name-price">
+                      <h3> {{ extra.name }}</h3>
+                      <p>&#8358;{{ extra.price }}</p>
+                  </div>
+                  <div class="increase-order">
+                      <integer-plusminus class="increase-order-number"
+                                        @ipm-increment='addPrice(extra.price, extra.uuid, extra.name, 1, extra.price)'
+                                        @ipm-decrement='removePrice(extra.price, extra.uuid, extra.name,1,extra.price)'
+                                        :min="0" :max="99" :value="0">
+                                        </integer-plusminus>
+                  </div>
+              </div>
+          </div>
+        </div>
         </div>
 
         <div class="fixed-bottom bg-white">
@@ -150,6 +152,7 @@
           }
           console.log(this.orders);
         },
+
         goToCheckOut(){
           if(this.orders.length === 0){
             this.$toast.info('No orders yet');
@@ -228,5 +231,13 @@
     padding: 5px;
 }
 
+.food-name-price h3{
+  margin-right: 2rem;
+}
+
+.scrollable{
+  height: 40vh;
+  overflow-y: scroll;
+}
 
 </style>

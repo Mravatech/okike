@@ -15,8 +15,8 @@
             </div>
           </router-link>
           <div class="wallet-amount">
-            <h3>₦120,525.00</h3>
-            <p><img src="../../assets/images/coin2.svg"> 567,899</p>
+            <h3>₦{{this.user.wallet_balance_naira}}</h3>
+            <p><img src="../../assets/images/coin2.svg"> {{this.user.wallet_balance}}</p>
           </div>
         </div>
         <div class="menu-nav-tabs">

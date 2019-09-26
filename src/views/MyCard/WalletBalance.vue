@@ -6,14 +6,14 @@
                     <a @click="$router.go(-1)"><img src="../../assets/images/back-btn2.svg" ></a>
                 </div>
                 <div class="customer-name">
-                    <h4>Emeka Seyi</h4>
-                    <h4><b>08000000000</b></h4>
+                    <h4>{{user.first_name}} {{user.last_name}}</h4>
+                    <h4><b>{{user.phone_number}}</b></h4>
                 </div>
                 <div class="coin-balance">
                     <p>Your Wallet & Coin Balance</p>
-                    <h1><span class="balance-naira">&#8358;</span>120,525<span class="balance-kobo">.00</span></h1>
+                    <h1><span class="balance-naira">&#8358;</span>{{user.wallet_balance_naira}}<span class="balance-kobo">.00</span></h1>
                     <div class="coin-amount">
-                        <p><img src="../../assets/images/coin.svg" > 567,899</p>
+                        <p><img src="../../assets/images/coin.svg" > {{user.wallet_balance}}</p>
                     </div>
                 </div>
 
@@ -33,8 +33,20 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+
     export default {
-        name: "WalletBalance.vue"
+        name: "WalletBalance.vue",
+
+        mounted() {
+
+        },
+        computed: {
+          ...mapGetters({user : "GET_USER"})
+        },
+        methods(){
+
+        }
     }
 </script>
 

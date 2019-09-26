@@ -57,6 +57,10 @@
           this.isLoading = false;
           return  this.$toast.error('Please enter your phone number');
         }
+        if(this.phone_number.length < 11){
+          this.isLoading = false;
+          return  this.$toast.error('Please enter a valid phone number');
+        }
         await onboard.phoneNumber(this.phone_number).then((res) => {
           if(res.data.token) {
 
@@ -68,7 +72,11 @@
             })
             ApiService.setHeader(token);
           }
-          if(res.data.proceed){
+          if(res.error){
+            this.isLoading = false;
+            this.$toast.error(res.error)
+          }
+          if(res.proceed){
             router.push({path: `/Landing`})
           } else {
             router.push({path: `/VerifyCode/${this.phone_number}`})
