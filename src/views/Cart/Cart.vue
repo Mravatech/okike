@@ -49,9 +49,8 @@
 <script>
   import { IntegerPlusminus } from 'vue-integer-plusminus'
   export default {
-    name: "Cart.vue",
+    name: "Cart",
     components: { IntegerPlusminus },
-    props: ['ordersDetail'],
     data () {
       return {
         ipm_value: 0,
@@ -61,11 +60,17 @@
         ipm_slot_decr: '-1',
         ipm_slot_incr: '+1',
         ipm_vertical: false,
-        demo_slot_value: 0
+        demo_slot_value: 0,
+        ordersDetail: []
       }
     },
     mounted() {
-      console.log(this.ordersDetail);
+      let name = 'ordersDetail';
+      let allCookieArray = document.cookie.split(';');
+      var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+      result && (result = JSON.parse(result[1]));
+      this.ordersDetail = result;
+      console.log(result);
     },
     methods: {
       cart(){

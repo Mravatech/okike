@@ -13,7 +13,7 @@
                     <p>Your Wallet & Coin Balance</p>
                     <h1><span class="balance-naira">&#8358;</span>120,525<span class="balance-kobo">.00</span></h1>
                     <div class="coin-amount">
-                        <p><img src="../../assets/images/coin.svg" > 567,899</p>
+                        <p><img src="../../assets/images/coin.svg" >{{ user.wallet_balance }}</p>
                     </div>
                 </div>
 
@@ -33,8 +33,25 @@
 </template>
 
 <script>
+    import {onboard} from "../../services/onboarding.service";
+
     export default {
-        name: "WalletBalance.vue"
+        name: "WalletBalance",
+      data(){
+          return {
+            user: '',
+          }
+      },
+      created() {
+
+
+        onboard.authorize(this.$store.getters.GET_AUTH_TOKEN).then((res) => {
+          this.user = this.$store.getters.GET_USER;
+        }).catch((err) => {
+          window.console.log(err);
+
+        });
+      },
     }
 </script>
 

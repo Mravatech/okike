@@ -160,8 +160,11 @@
             totalAmount: this.totalAmount
           };
           let ordersDetail = [];
-          ordersDetail.push(data)
-          console.log(ordersDetail);
+          ordersDetail.push(data);
+          console.log(ordersDetail.toString());
+          let date = new Date();
+          date.setTime(date.getTime()+(1*24*60*60*1000));
+          document.cookie = 'ordersDetail' + "=" + JSON.stringify(ordersDetail) + "; expires=" + date.toGMTString();
           router.push({ name: 'Cart', params: {ordersDetail: ordersDetail}})
         }
       }

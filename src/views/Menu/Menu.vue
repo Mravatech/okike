@@ -15,8 +15,8 @@
             </div>
           </router-link>
           <div class="wallet-amount">
-            <h3>₦120,525.00</h3>
-            <p><img src="../../assets/images/coin2.svg"> 567,899</p>
+            <h3>₦{{ user.wallet_balance }}</h3>
+            <p><img src="../../assets/images/coin2.svg"> {{ user.wallet_balance }} </p>
           </div>
         </div>
         <div class="menu-nav-tabs">
@@ -33,11 +33,17 @@
             <b-modal centered class="fixed-bottom" hide-footer hide-header id="modal-center">
               <h4 class="add_cash_title">Add Cash</h4>
               <router-link to="AddCash">
-                <div class="my-card-bg">
-                  <div><img src="../../assets/images/card-green.svg"></div>
+                <!--                <div class="my-card-bg">-->
+                <!--                  <div><img src="../../assets/images/card-green.svg"></div>-->
+                <!--                  <div>-->
+                <!--                    <h5>MASTERCARD***2345</h5>-->
+                <!--                    <h6>Use your ATM/Banks Card or Add a New Card</h6>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <div class="my-profile">
+                  <!--                  <div><img src="../../assets/images/card-green.svg"></div>-->
                   <div>
-                    <h5>MASTERCARD***2345</h5>
-                    <h6>Use your ATM/Banks Card or Add a New Card</h6>
+                    <p>Add Cash by Using your ATM/Banks Card</p>
                   </div>
                 </div>
               </router-link>
@@ -94,7 +100,7 @@
           <div class="logout-footer">
             <div class="logout">
               <img src="../../assets/images/logout.svg">
-              <button class="logout-btn" @click="logout">Logout</button>
+              <button @click="logout" class="logout-btn">Logout</button>
             </div>
           </div>
         </div>
@@ -105,11 +111,26 @@
 
 <script>
   import {mapGetters} from 'vuex';
+  import {onboard} from "../../services/onboarding.service";
 
   export default {
     name: "Menu.vue",
     computed: {
       ...mapGetters({user: "GET_USER"})
+    },
+    data: function () {
+      return {
+        user: {}
+      }
+    },
+    created() {
+
+        onboard.authorize(this.$store.getters.GET_AUTH_TOKEN).then((res) => {
+          this.user = this.$store.getters.GET_USER;
+        }).catch((err) => {
+          window.console.log(err);
+
+        });
     },
     methods: {
       async logout() {
