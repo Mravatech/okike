@@ -69,7 +69,6 @@
 
 <script>
     import {TheMask} from 'vue-the-mask';
-    import {wallet} from '../../services/wallet.service';
   export default {
       components: {TheMask},
       name: "AddBankCard.vue",
@@ -97,7 +96,6 @@
               'cvv': this.card_ccv,
               'pin': this.card_pin,
             }
-            wallet.addcash(card)
         }
       }
   }

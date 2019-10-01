@@ -1,10 +1,10 @@
 import {ApiService} from "./api.service";
 
 
-const wallet = {
+const search = {
 
-  detail: async (uuid) => {
-    let url = "/u/food/details/" + uuid;
+  food: async (keyword) => {
+    let url = "/search/food?food="+keyword;
     return await ApiService.get(url).then((res) => {
       return Promise.resolve(res.data.data);
     }).catch((error) => {
@@ -12,14 +12,10 @@ const wallet = {
     });
   },
 
-  addcash: async (data) => {
-    console.log(data)
-  }
-
 
 };
 
-export {wallet};
+export {search};
 
 
 

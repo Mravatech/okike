@@ -50,6 +50,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 ApiService.init('http://167.71.249.56/api/v1');
+// ApiService.init('http://localhost:8000/api/v1');
 
 if (store.dispatch('isLoggedIn'))
   ApiService.setHeader(store.getters.GET_AUTH_TOKEN);

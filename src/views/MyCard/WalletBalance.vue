@@ -13,7 +13,7 @@
                     <p>Your Wallet & Coin Balance</p>
                     <h1><span class="balance-naira">&#8358;</span>{{user.wallet_balance_naira}}<span class="balance-kobo">.00</span></h1>
                     <div class="coin-amount">
-                        <p><img src="../../assets/images/coin.svg" > {{user.wallet_balance}}</p>
+                        <p><img src="../../assets/images/coin.svg" >{{ user.wallet_balance }}</p>
                     </div>
                 </div>
 
@@ -21,10 +21,11 @@
 
                 <div class="add-money-foot">
                     <div class="add-money-btn">
-                        <router-link to="AddBankCard"><img src="../../assets/images/add-money-btn.svg" ></router-link>
+                        <router-link to="AddCash"><img src="../../assets/images/add-money-btn.svg" ></router-link>
                     </div>
                     <div class="buy-food-btn">
-                        <router-link to="Delivery"><img src="../../assets/images/buy-food-btn.svg" ></router-link>
+                        <img src="../../assets/images/buy-food-btn.svg" @click="checkout()"/>
+
                     </div>
                 </div>
             </div>
@@ -34,6 +35,7 @@
 
 <script>
     import {mapGetters} from 'vuex';
+    import router from "../../router";
 
     export default {
         name: "WalletBalance.vue",
@@ -41,10 +43,26 @@
         mounted() {
 
         },
-        computed: {
-          ...mapGetters({user : "GET_USER"})
+        data: function () {
+          return {
+            isActive: false
+          };
         },
-        methods(){
+        computed: {
+          ...mapGetters({user : "GET_USER", basket : "GET_CART"}),
+
+        },
+        methods: {
+          checkout(){
+              let total = 0;
+              this.basket.forEach((item) => { total += item.totalAmount; });
+              const wallet = this.user.wallet_balance_naira.replace(',', '')
+              if(total < parseInt(wallet)){
+                router.push({name : 'Delivery'})
+              }
+            }
+
+
 
         }
     }

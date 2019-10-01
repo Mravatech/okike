@@ -51,9 +51,8 @@
   import { IntegerPlusminus } from 'vue-integer-plusminus'
   import {mapGetters} from 'vuex';
   export default {
-    name: "Cart.vue",
+    name: "Cart",
     components: { IntegerPlusminus },
-    props: ['ordersDetail'],
     data () {
       return {
         ipm_value: 0,
@@ -63,9 +62,10 @@
         ipm_slot_decr: '-1',
         ipm_slot_incr: '+1',
         ipm_vertical: false,
-        demo_slot_value: 0
+        demo_slot_value: 0,
       }
     },
+    props: ['ordersDetail'],
     mounted() {
       if (typeof this.ordersDetail == 'undefined'){
         this.ordersDetail = [];
@@ -74,9 +74,6 @@
     },
     computed: {
       ...mapGetters({basket : "GET_CART"})
-    },
-    watch: {
-
     },
     methods: {
       cart(){

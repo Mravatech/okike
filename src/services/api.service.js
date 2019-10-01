@@ -21,9 +21,6 @@ const ApiService = {
         return ApiService.livescore;
     },
 
-    getLiveScoreKey(){
-        return '&APIkey=10a8b077995ba345b03641bc73ade7450b785252223b0f5a885579f9815d8b99'
-    },
 
     getBaseUrl() {
         return ApiService.baseUrl;
