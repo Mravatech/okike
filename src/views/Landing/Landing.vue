@@ -28,8 +28,9 @@
       <div v-if="!this.isSearch">
         <div class="promo-today">
           <h1>Promo Today</h1>
-          <div class="promo-today-slide" v-for="food in promo" :key="food.id">
-            <div class="sliding-post">
+          <div class="promo-today-slide">
+            <div v-for="food in promo" :key="food.id">
+              <div class="sliding-post">
              <router-link :to="'ViewFood/' + food.uuid">
                 <div class="product_img">
                   <img :src="food.image_url" />
@@ -46,6 +47,8 @@
                 </div>
               </router-link>
             </div>
+            </div>
+
 
           </div>
         </div>
