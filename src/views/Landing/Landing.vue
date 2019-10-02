@@ -28,74 +28,25 @@
       <div v-if="!this.isSearch">
         <div class="promo-today">
           <h1>Promo Today</h1>
-          <div class="promo-today-slide">
+          <div class="promo-today-slide" v-for="food in promo" :key="food.id">
             <div class="sliding-post">
-              <router-link to="ViewFood">
+             <router-link :to="'ViewFood/' + food.uuid">
                 <div class="product_img">
-                  <img src="../../assets/images/abacha-meal.jpg" />
+                  <img :src="food.image_url" />
                 </div>
                 <div class="food-details">
-                  <p class="food-name">Boli & Titus</p>
+                  <p class="food-name">{{ food.name }}</p>
                   <p class="food-price">
-                    &#8358; 750
-                    <span class="food-price-big">&#8358; 1,350</span>
+                    &#8358; {{ food.discount_price }}
+                    <span
+                      class="food-price-big"
+                    >&#8358; {{ food.price }}</span>
                   </p>
-                  <p class="food-time">3:15pm</p>
+                  <p class="food-time">{{getPostTime(food.updated_at)}}</p>
                 </div>
               </router-link>
             </div>
-            <div class="sliding-post">
-              <div class="product_img">
-                <img src="../../assets/images/boli-meal.jpg" />
-              </div>
-              <div class="food-details">
-                <p class="food-name">Boli & Titus</p>
-                <p class="food-price">
-                  &#8358; 750
-                  <span class="food-price-big">&#8358; 1,350</span>
-                </p>
-                <p class="food-time">3:15pm</p>
-              </div>
-            </div>
-            <div class="sliding-post">
-              <div class="product_img">
-                <img src="../../assets/images/abacha-meal.jpg" />
-              </div>
-              <div class="food-details">
-                <p class="food-name">Boli & Titus</p>
-                <p class="food-price">
-                  &#8358; 750
-                  <span class="food-price-big">&#8358; 1,350</span>
-                </p>
-                <p class="food-time">3:15pm</p>
-              </div>
-            </div>
-            <div class="sliding-post">
-              <div class="product_img">
-                <img src="../../assets/images/boli-meal.jpg" />
-              </div>
-              <div class="food-details">
-                <p class="food-name">Boli & Titus</p>
-                <p class="food-price">
-                  &#8358; 750
-                  <span class="food-price-big">&#8358; 1,350</span>
-                </p>
-                <p class="food-time">3:15pm</p>
-              </div>
-            </div>
-            <div class="sliding-post">
-              <div class="product_img">
-                <img src="../../assets/images/abacha-meal.jpg" />
-              </div>
-              <div class="food-details">
-                <p class="food-name">Boli & Titus</p>
-                <p class="food-price">
-                  &#8358; 750
-                  <span class="food-price-big">&#8358; 1,350</span>
-                </p>
-                <p class="food-time">3:15pm</p>
-              </div>
-            </div>
+
           </div>
         </div>
 
@@ -191,6 +142,7 @@ import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 import { category } from "../../services/category.service";
 import { search } from "../../services/search.service";
+import { food } from "../../services/food.service";
 
 export default {
   name: "Landing",
@@ -203,7 +155,8 @@ export default {
       category: [],
       query: "",
       isSearch: false,
-      search_result: {}
+      search_result: {},
+      promo: {}
     };
   },
   computed: {
@@ -213,6 +166,7 @@ export default {
   created() {
     this.user = this.$store.getters.GET_USER;
     this.fetchCategory();
+    this.fetchPromo();
   },
   methods: {
     async fetchCategory() {
@@ -227,6 +181,15 @@ export default {
           this.isLoading = false;
           this.$toast.error(err.message);
         });
+    },
+
+    async fetchPromo(){
+      this.isLoading = true;
+      await food.promo().then((res)=>{
+        this.promo = res
+      }).catch((err)=> {
+        console.log(err)
+      })
     },
 
     async searchFood() {

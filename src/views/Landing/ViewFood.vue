@@ -95,14 +95,12 @@ export default {
   },
   props: ["uuid"],
   mounted() {
-    console.log(this.uuid);
     this.isLoading = true;
     food
       .detail(this.uuid)
       .then(res => {
         this.isLoading = false;
         this.details = res;
-        // router.push({path: `/Location`})
       })
       .catch(err => {
         this.isLoading = false;
