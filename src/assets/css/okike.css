@@ -687,7 +687,7 @@ a:hover, a:active, a:focus{
 .food-name-price{
     display: flex;
     justify-content: space-between;
-    padding: 0;
+    padding-top: 0.5rem;
 }
 .food-name-price h3{
     font-family: Avenir-Heavy;
@@ -756,6 +756,7 @@ a:hover, a:active, a:focus{
     border-radius: 27.5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.3rem;
 }
 .add-to-bag-bg h3{
@@ -764,7 +765,6 @@ a:hover, a:active, a:focus{
     color: #FFFFFF;
     letter-spacing: 0;
     margin-bottom: 0;
-    padding-top: 10px;
     padding-left: 10px;
 }
 .add-to-bag-bg span{

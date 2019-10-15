@@ -8,8 +8,8 @@
             <p>Quickly grab your food now.</p>
           </div>
           <div class>
-            <router-link to="Delicacies">
-              <img class="menu-btn" src="../../assets/images/okike-menu.svg" />
+            <router-link to="Menu">
+              <img class="menu-btn" src="../../assets/images/menu_btn.svg" />
             </router-link>
           </div>
         </div>
@@ -123,9 +123,9 @@
       <div class="pb-5"></div>
       <div class="fixed-bottom landing-footer">
         <div class="floating-menu-footer container">
-          <!-- <div class="menu-float ">
+          <div class="menu-float ">
             <router-link to="Delicacies"><img src="../../assets/images/okike-menu.svg"></router-link>
-          </div>-->
+          </div>
 
           <div class="cart-float">
             <router-link to="Cart">
@@ -253,19 +253,19 @@ body {
 }
 .floating-menu-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-bottom: 1rem;
   width: 100%;
 }
 
 .menu-btn {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+  /*width: 64px;*/
+  /*height: 64px;*/
+  /*border-radius: 50%;*/
 }
 
 .cart-btn {
-  width: 64px;
-  height: 64px;
+  /*width: 64px;*/
+  /*height: 64px;*/
 }
 </style>

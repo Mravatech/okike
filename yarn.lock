@@ -6014,6 +6014,11 @@ mocha-nightwatch@3.2.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -9567,6 +9572,13 @@ vue-owl-carousel@^2.0.3:
     owl.carousel "^2.3.4"
     style-loader "^0.23.0"
 
+vue-paystack@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/vue-paystack/-/vue-paystack-2.0.2.tgz#1968aacebf3da45b5beabfd4f1c1ddb6fb98d428"
+  integrity sha512-tH/QGxfKgwv2jMNvrpeirHS3Y/YUnLwx6dnxM81D86bptCGqLJ38Z9xhP4nE2VMPsrexmdjGepbDOYbrQAk00Q==
+  dependencies:
+    vue "^2.6.7"
+
 vue-router@^3.0.1:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.2.tgz#2e0904703545dabdd42b2b7a2e617f02f99a1969"
@@ -9622,7 +9634,7 @@ vue-typer@^1.2.0:
   dependencies:
     lodash.split "^4.4.2"
 
-vue@^2.1.10, vue@^2.5.2:
+vue@^2.1.10, vue@^2.5.2, vue@^2.6.7:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
