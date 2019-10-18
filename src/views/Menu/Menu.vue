@@ -87,18 +87,18 @@
               <p>My Card</p>
             </div>
           </router-link> -->
-          <router-link to>
-            <div class="menu-nav-tab">
-              <img src="../../assets/images/star-icon.svg" />
-              <p>Reward Account</p>
-            </div>
-          </router-link>
-          <router-link to="Invite">
-            <div class="menu-nav-tab">
-              <img src="../../assets/images/users-icon.svg" />
-              <p>Invite Friends</p>
-            </div>
-          </router-link>
+          <!--<router-link to>-->
+            <!--<div class="menu-nav-tab">-->
+              <!--<img src="../../assets/images/star-icon.svg" />-->
+              <!--<p>Reward Account</p>-->
+            <!--</div>-->
+          <!--</router-link>-->
+          <!--<router-link to="Invite">-->
+            <!--<div class="menu-nav-tab">-->
+              <!--<img src="../../assets/images/users-icon.svg" />-->
+              <!--<p>Invite Friends</p>-->
+            <!--</div>-->
+          <!--</router-link>-->
           <router-link to="History">
             <div class="menu-nav-tab">
               <img src="../../assets/images/history-icon.svg" />

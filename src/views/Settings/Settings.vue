@@ -17,17 +17,17 @@
                 <div class="change_pin">
                     <router-link to="ChangePin"><h3>Change PIN</h3></router-link>
                 </div>
-                <div class="change_pin">
-                    <router-link to=""><h3>App Version Info</h3></router-link>
-                </div>
-                <div class="change_pin">
-                    <router-link to=""><h3>Send Feedbacks</h3></router-link>
-                </div>
+                <!--<div class="change_pin">-->
+                    <!--<router-link to=""><h3>App Version Info</h3></router-link>-->
+                <!--</div>-->
+                <!--<div class="change_pin">-->
+                    <!--<router-link to=""><h3>Send Feedbacks</h3></router-link>-->
+                <!--</div>-->
                 <div class="change_pin">
                     <router-link to="CustomerService"><h3>Contact Customer Service</h3></router-link>
                 </div>
                 <div class="change_pin2">
-                    <router-link to=""><h3>Sign Out from this Device</h3></router-link>
+                    <h3 @click="logout">Sign Out from this Device</h3>
                 </div>
             </div>
             <div class="okike_foot_logo">
@@ -42,7 +42,15 @@
 
 <script>
     export default {
-        name: "Settings.vue"
+        name: "Settings.vue",
+        methods: {
+
+            async logout() {
+                this.$store.dispatch("UNSET_USER");
+                this.isAuth = this.$store.getters.is_AUTHENTICATED;
+                this.$router.push("/");
+            }
+        }
     }
 </script>
 

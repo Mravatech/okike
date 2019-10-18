@@ -635,7 +635,9 @@ a:hover, a:active, a:focus{
     margin-right: 10px;
 }
 
-
+.nav-link {
+    padding: 0.5rem;
+}
 /*view-okike-food start*/
 .view-okike-food{
     width: 100%;
@@ -648,7 +650,7 @@ a:hover, a:active, a:focus{
 .view-food-img img{
     width: 100%;
     height: 300px;
-    object-fit: contain;
+    object-fit: cover;
 }
 .food-overlay{
     position: absolute;
@@ -681,7 +683,7 @@ a:hover, a:active, a:focus{
     position: absolute;
     z-index: 2;
     padding: 1rem 1.3rem;
-    margin-top: -6rem;
+    margin-top: -3.6rem;
 
 }
 .food-name-price{

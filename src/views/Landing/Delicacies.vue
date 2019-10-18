@@ -245,6 +245,7 @@ export default {
 .delicacy-post p {
   margin-bottom: 0;
 }
+
 .card {
   background-color: transparent;
   border: none;
