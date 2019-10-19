@@ -229,6 +229,13 @@ export default {
 </script>
 
 <style scoped>
+    a{
+        text-decoration: none;
+        /*color: #000000;*/
+    }
+    a:hover, a:focus, a:active{
+        text-decoration: none;
+    }
 body {
   background: #f3f5f7 !important;
 }
