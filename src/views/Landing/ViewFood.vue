@@ -24,7 +24,7 @@
         <p>{{ details.description || '' }}</p>
         <button
           class="buy-combo-btn"
-          @click="addPrice(parseInt(details.price), 'combo', details.name, parseInt(details.price))"
+          @click="addPrice(parseInt(details.price), 'combo', details.name,1,parseInt(details.price))"
         >Buy Combo</button>
       </div>
       <div class="scrollable">
@@ -109,40 +109,15 @@ export default {
   },
   methods: {
     addPrice(price, type = "combo", name = "combo", quantity = 1, intPrice) {
-      if (!this.orders.some(obj => obj.type === "combo")) {
-        let order = {
-          price: parseInt(this.details.price),
-          amount: parseInt(this.details.price),
-          food_uuid: this.details.uuid,
-          food: this.details.name,
-          type: "combo",
-          name: "combo",
-          quantity: 1
-        };
-        this.orders.push(order);
-        this.totalAmount += parseInt(this.details.price);
-      }
 
-      if (type === "combo") {
-        let order = {
-           price: parseInt(this.details.price),
-          amount: parseInt(this.details.price),
-          food_uuid: this.details.uuid,
-          food: this.details.name,
-          type: "combo",
-          name: "combo",
-          quantity: 1
-        };
-        this.orders.push(order);
-        this.totalAmount += parseInt(this.details.price);
-      } else if (this.orders.some(obj => obj.type === type)) {
+      if (this.orders.some(obj => obj.type === type)) {
         let objIndex = this.orders.findIndex(obj => obj.type === type);
-        this.orders[objIndex].quantity = quantity;
-        this.orders[objIndex].price = price;
+        this.orders[objIndex].quantity += quantity;
+        this.orders[objIndex].price += parseInt(price);
         this.totalAmount += parseInt(intPrice);
       } else {
         let order = {
-          price: price,
+          price: parseInt(price),
           type: type,
           name: name,
           quantity: quantity,
@@ -151,7 +126,6 @@ export default {
           food: this.details.name,
         };
         this.orders.push(order);
-        console.log(intPrice);
         this.totalAmount += parseInt(intPrice);
       }
       console.log(this.orders);

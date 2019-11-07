@@ -62,16 +62,23 @@
           return  this.$toast.error('Please enter a valid phone number');
         }
         await onboard.phoneNumber(this.phone_number).then((res) => {
-          if(res.data.token) {
+          if(res.data) {
+            if(res.data.hasOwnProperty('token')){
+              let token =res.data.token;
+              this.autho(token).then(function () {
+                router.push({name: 'Landing'});
+              }).catch((error) => {
 
-            let token =res.data.token;
-            this.autho(token).then(function () {
-              router.push({name: 'Landing'});
-            }).catch((error) => {
+              })
+              ApiService.setHeader(token);
+            }
+            else{
+              this.isLoading = false;
+              router.push({path: `/VerifyCode/${this.phone_number}`})
+            }
 
-            })
-            ApiService.setHeader(token);
           }
+
           if(res.error){
             this.isLoading = false;
             this.$toast.error(res.error)

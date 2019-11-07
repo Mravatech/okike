@@ -22,6 +22,7 @@
             </div>
           </button>
           <button @click="onSubmit" class="verify-btn" v-if="!isLoading">Verify Number</button>
+          <button @click="tryAgain" class="verify-btn mt-5" v-if="!isLoading">Send Otp Again</button>
         </div>
       </div>
     </div>
@@ -32,7 +33,7 @@
   import router from "../../router";
   import {HalfCircleSpinner} from 'epic-spinners'
   import {mapActions} from 'vuex';
-
+  import {onboard} from '../../services/onboarding.service';
 
 
   export default {
@@ -68,6 +69,41 @@
           }
         });
         this.loading = false;
+      },
+      async tryAgain(){
+        this.isLoading= true;
+        await onboard.phoneNumber(this.phone_number).then((res) => {
+          if(res.data) {
+            if(res.data.hasOwnProperty('token')){
+              let token =res.data.token;
+              this.autho(token).then(function () {
+                router.push({name: 'Landing'});
+              }).catch((error) => {
+
+              })
+              ApiService.setHeader(token);
+            }
+            else{
+              this.isLoading = false;
+              router.push({path: `/VerifyCode/${this.phone_number}`})
+            }
+
+          }
+
+          if(res.error){
+            this.isLoading = false;
+            this.$toast.error(res.error)
+          }
+          if(res.proceed){
+            router.push({path: `/Landing`})
+          } else {
+            router.push({path: `/VerifyCode/${this.phone_number}`})
+          }
+        }).catch((err) => {
+          console.log(err)
+          this.isLoading = false;
+          this.$toast.error('message string')
+        });
       }
     }
   }

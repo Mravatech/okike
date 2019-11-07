@@ -49,17 +49,19 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions} from "vuex";
 import { order } from "../../services/order.service";
+import {onboard} from "../../services/onboarding.service";
 import router from '../../router';
   export default {
     name: "Delivery.vue",
     computed:{
       ...mapGetters({user: 'GET_USER', basket: 'GET_CART'}),
       ...mapMutations({clear_cart : 'CLEAR_CART'})
+
     },
     methods:{
-
+      ...mapActions({ autho: 'AUTHORISE_USER'}),
 
       async checkout() {
          for await (const element of this.basket) {
@@ -69,13 +71,23 @@ import router from '../../router';
              'address': JSON.stringify(this.delivery),
            }
            await order.make(data).then((res)=> {
+              this.$toast.success(res.message);
+             onboard.phoneNumber(this.user.phone_number).then((resp) => {
+                let token = resp.data.token;
 
+                this.autho(token).then(function () {
+
+                }).catch((error) => {
+
+                })
+              })
+              this.clear_cart
+              router.push({name : 'Confirmation'})
            }).catch((err) => {
            })
 
          };
-          this.clear_cart
-         router.push({name : 'Confirmation'})
+
       },
       setIsUser(){
         this.isNotUser = true
