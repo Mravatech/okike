@@ -143,6 +143,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
+// import router from "../../router";
 import { category } from "../../services/category.service";
 import { search } from "../../services/search.service";
 import { food } from "../../services/food.service";
@@ -170,6 +171,9 @@ export default {
     this.user = this.$store.getters.GET_USER;
     this.fetchCategory();
     this.fetchPromo();
+  },
+  mounted(){
+    this.checkUser();
   },
   methods: {
     async fetchCategory() {
@@ -213,6 +217,20 @@ export default {
         this.isSearch = false;
       }
 
+    },
+
+    checkUser(){
+      let name = this.user.username;
+      let location = this.user.location;
+
+      // if(!location){
+      //    this.$router.go("/Location")
+
+      // }
+
+      // if (!name){
+      //    this.$router.go("/Username")
+      // }
     },
 
     getPostTime(value) {

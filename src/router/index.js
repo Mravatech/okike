@@ -97,8 +97,8 @@ const router = new Router({
       name: 'Location',
       component: Location,
       meta: {
-        public: true,  // Allow access to even if not logged in
-        onlyWhenLoggedOut: true
+        // public: true,  // Allow access to even if not logged in
+        // onlyWhenLoggedOut: true
       }
     },
     {
@@ -106,8 +106,8 @@ const router = new Router({
       name: 'CreatePin',
       component: CreatePin,
       meta: {
-        public: true,  // Allow access to even if not logged in
-        onlyWhenLoggedOut: true
+        // public: true,  // Allow access to even if not logged in
+        // onlyWhenLoggedOut: true
       }
     },
     {
@@ -116,7 +116,7 @@ const router = new Router({
       component: Username,
       meta: {
         public: true,  // Allow access to even if not logged in
-        onlyWhenLoggedOut: true
+        // onlyWhenLoggedOut: true
       }
     },
     {

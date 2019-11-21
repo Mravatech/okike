@@ -12,7 +12,7 @@
         </div>
         <div class="locations">
           <div class="verify-number">
-            <input class="verify-input" name="text" placeholder="Username" required type="number" v-model="username">
+            <input class="verify-input" name="text" placeholder="Username" required v-model="username">
             <button class="verify-btn" @click="onSubmit">Welcome to Okike</button>
           </div>
           <div class="text-center">
@@ -46,6 +46,15 @@
         await onboard.addUsername(this.username).then((res) => {
           console.log(res);
           this.isLoading = false;
+          onboard.phoneNumber(this.user.phone_number).then((resp) => {
+                let token = resp.data.token;
+
+                this.autho(token).then(function () {
+
+                }).catch((error) => {
+
+                })
+              })
           router.push({path: `/CreatePin`})
         }).catch((err) => {
           this.isLoading = false;
